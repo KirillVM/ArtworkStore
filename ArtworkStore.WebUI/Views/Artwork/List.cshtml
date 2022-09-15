@@ -1,0 +1,29 @@
+﻿@using ArtworkStore.Domain.Entities
+@model IEnumerable<Artwork>
+
+@{
+    ViewBag.Title = "Artworks";
+}
+
+<div>
+    <table class="tbArtworks" border="1">
+        <caption>Artworks</caption>
+        <tr>
+            <th>Item No</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        @{int i = 0;
+        }
+        @foreach (var el in @Model)
+        {
+            <tr>
+                <td>@(++i)</td>
+                <td>@el.Name</td>
+                <td>@el.Price.ToString("# руб")</td>
+            </tr>
+        }
+    </table>
+</div>
+
+
