@@ -16,10 +16,10 @@ namespace ArtworkStore.WebUI.HtmlHelpers
         {
             StringBuilder result = new StringBuilder();
 
-            for (int i = 0;i<= pagingInfo.TotalPages;i++)
+            for (int i = 1; i <= pagingInfo.TotalPages; i++)
             {
                 TagBuilder tag = new TagBuilder("a");
-                tag.MergeAttribute("hef", pageUrl(i));
+                tag.MergeAttribute("href", pageUrl(i));
                 tag.InnerHtml = i.ToString();
 
                 if (i == pagingInfo.CurrentPage)
@@ -28,7 +28,7 @@ namespace ArtworkStore.WebUI.HtmlHelpers
                     tag.AddCssClass("btn-primary");
                 }
 
-                tag.AddCssClass("btn btn-defult");
+                tag.AddCssClass("btn btn-default");
                 result.Append(tag.ToString());
             }
             return MvcHtmlString.Create(result.ToString());

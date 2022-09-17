@@ -1,29 +1,25 @@
-﻿@using ArtworkStore.Domain.Entities
-@model IEnumerable<Artwork>
-
-@{
-    ViewBag.Title = "Artworks";
-}
+﻿@using ArtworkStore.WebUI.Models
+@model ArtworkListViewModel
 
 <div>
-    <table class="tbArtworks" border="1">
-        <caption>Artworks</caption>
-        <tr>
-            <th>Item No</th>
-            <th>Name</th>
-            <th>Price</th>
-        </tr>
-        @{int i = 0;
-        }
-        @foreach (var el in @Model)
-        {
+        <table class="tbArtworks" border="1">
+            <caption>Artworks</caption>
             <tr>
-                <td>@(++i)</td>
-                <td>@el.Name</td>
-                <td>@el.Price.ToString("# руб")</td>
+                <th>Item No</th>
+                <th>Name</th>
+                <th>Price</th>
             </tr>
-        }
-    </table>
-</div>
+            @{int i = 0;
+            }
+            @foreach (var el in @Model.Artworks)
+            {
+                <tr>
+                    <td>@(++i)</td>
+                    <td>@el.Name</td>
+                    <td>@el.Price.ToString("# руб")</td>
+                </tr>
+            }
+        </table>
+    </div>
 
 

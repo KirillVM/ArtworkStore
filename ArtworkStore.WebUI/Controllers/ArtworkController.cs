@@ -1,4 +1,5 @@
 ﻿using ArtworkStore.Domain.Abstract;
+using ArtworkStore.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,20 @@ namespace ArtworkStore.WebUI.Controllers
         // GET: Artwork
         public ViewResult List(int page=1)
         {
-            return View(repository.Artworks
-                .OrderBy(artwork=>artwork.Id)
-                .Skip((page-1)*pageSize)
-                .Take(pageSize));
-        }
+            ArtworkListViewModel model = new ArtworkListViewModel
+            {
+                Artworks = repository.Artworks
+                    .OrderBy(artwork => artwork.Id)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize),
+                PagingInfo  = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = pageSize,
+                    TotalItems = repository.Artworks.Count()
+                }
+            };
+            return View(model);
+        }   
     }
 }
