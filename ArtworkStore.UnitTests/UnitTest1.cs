@@ -138,5 +138,86 @@ namespace ArtworkStore.UnitTests
             Assert.IsTrue(result[0].Name == "Зима" && result[0].Technique == "Watercolor");
             Assert.IsTrue(result[1].Name == "Осень" && result[0].Technique == "Watercolor");
         }
+
+        [TestMethod]
+        public void Can_Create_Categories()
+        {
+            Mock<IArtworkRepository> mock = new Mock<IArtworkRepository>();
+            mock.Setup(m => m.Artworks).Returns(new List<Artwork>
+            {
+                new Artwork { Id=1, Name="Зима", Technique = "Watercolor"},
+                new Artwork { Id=2, Name="Лето", Technique = "Oil painting"},
+                new Artwork { Id=3, Name="Осень", Technique = "Watercolor"},
+                new Artwork { Id=4, Name="Весна", Technique = "Watercolor"},
+                new Artwork { Id=5, Name="Море", Technique = "Watercolor"},
+                new Artwork { Id=6, Name="Река", Technique = "Oil painting"},
+                new Artwork { Id=7, Name="Поле", Technique = "Oil painting"},
+                new Artwork { Id=8, Name="Серый день", Technique = "Watercolor"},
+                /*new Artwork { Id=9, Name="Солнечный день" },
+                new Artwork { Id=10, Name="Гурзуф" },
+                new Artwork { Id=11, Name="Вечер в саду" },
+                new Artwork { Id=12, Name="Полночь" },*/
+            });
+
+            NavController controller = new NavController(mock.Object);
+
+            List<string> result = ((IEnumerable<string>)controller.Menu().Model).ToList();
+
+            Assert.AreEqual(result.Count, 2);
+            Assert.AreEqual(result[0], "Oil painting");
+            Assert.AreEqual(result[1], "Watercolor");
+        }
+
+
+        [TestMethod]
+        public void Indicate_Selected_Categories()
+        {
+            Mock<IArtworkRepository> mock = new Mock<IArtworkRepository>();
+            mock.Setup(m => m.Artworks).Returns(new Artwork[]
+            {
+                new Artwork { Id=1, Name="Зима", Technique = "Watercolor"},
+                new Artwork { Id=2, Name="Лето", Technique = "Oil painting"},
+            });
+
+            NavController controller = new NavController(mock.Object);
+
+            string techniqueToSelect = "Watercolor";
+
+            string result = controller.Menu(techniqueToSelect).ViewBag.SelectedTechnique;
+
+            Assert.AreEqual(result, techniqueToSelect);
+        }
+
+        [TestMethod]
+        public void Generate_Category_Specific_Game_Count()
+        {
+            Mock<IArtworkRepository> mock = new Mock<IArtworkRepository>();
+            mock.Setup(m => m.Artworks).Returns(new List<Artwork>
+            {
+                new Artwork { Id=1, Name="Зима", Technique = "Watercolor"},
+                new Artwork { Id=2, Name="Лето", Technique = "Oil painting"},
+                new Artwork { Id=3, Name="Осень", Technique = "Watercolor"},
+                new Artwork { Id=4, Name="Весна", Technique = "Watercolor"},
+                new Artwork { Id=5, Name="Море", Technique = "Watercolor"},
+                new Artwork { Id=6, Name="Река", Technique = "Oil painting"},
+                new Artwork { Id=7, Name="Поле", Technique = "Oil painting"},
+                new Artwork { Id=8, Name="Серый день", Technique = "Watercolor"},
+                /*new Artwork { Id=9, Name="Солнечный день" },
+                new Artwork { Id=10, Name="Гурзуф" },
+                new Artwork { Id=11, Name="Вечер в саду" },
+                new Artwork { Id=12, Name="Полночь" },*/
+            });
+
+            ArtworkController controller = new ArtworkController(mock.Object);
+            controller.pageSize = 6;
+
+            int res1 = ((ArtworkListViewModel)controller.List("Watercolor").Model).PagingInfo.TotalItems;
+            int res2 = ((ArtworkListViewModel)controller.List("Oil painting").Model).PagingInfo.TotalItems;
+            int resAll = ((ArtworkListViewModel)controller.List(null).Model).PagingInfo.TotalItems;
+
+            Assert.AreEqual(res1, 5);
+            Assert.AreEqual(res2, 3);
+            Assert.AreEqual(resAll, 8);
+        }
     }
 }

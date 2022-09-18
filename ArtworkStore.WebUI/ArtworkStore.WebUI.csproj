@@ -216,6 +216,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArtworkController.cs" />
+    <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -233,6 +234,7 @@
     <Content Include="Views\Artwork\List.cshtml" />
     <Content Include="Scripts\jquery-1.9.0.min.map" />
     <Content Include="Views\Shared\ArtworkSummary.cshtml" />
+    <Content Include="Views\Nav\Menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

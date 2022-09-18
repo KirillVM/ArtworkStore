@@ -11,7 +11,7 @@ namespace ArtworkStore.WebUI.Controllers
     public class ArtworkController : Controller
     {
         private IArtworkRepository repository;
-        public int pageSize = 6;
+        public int pageSize = 3;
         public ArtworkController(IArtworkRepository repository)
         {
             this.repository = repository;
@@ -31,8 +31,10 @@ namespace ArtworkStore.WebUI.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = repository.Artworks.Count()
-                },
+                    TotalItems = technique == null ?
+                repository.Artworks.Count() :
+                repository.Artworks.Where(artworks => artworks.Technique == technique).Count()
+},
                 CurrentTechnique = technique
             };
             return View(model);
