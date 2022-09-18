@@ -10,5 +10,6 @@ namespace ArtworkStore.WebUI.Models
     {
         public IEnumerable<Artwork> Artworks { get; set; }
         public PagingInfo PagingInfo { get; set; }
+        public string CurrentTechnic { get; set; }
     }
 }
