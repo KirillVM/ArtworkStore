@@ -51,8 +51,8 @@ namespace ArtworkStore.Domain.Migrations
                         .HasColumnName("price")
                         .HasColumnType("numeric");
 
-                    b.Property<string>("Technic")
-                        .HasColumnName("technic")
+                    b.Property<string>("Technique")
+                        .HasColumnName("technique")
                         .HasColumnType("text");
 
                     b.Property<Guid>("TransportId")

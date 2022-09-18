@@ -18,7 +18,7 @@ namespace ArtworkStore.Domain.Migrations
                     descriprion = table.Column<string>(nullable: true),
                     creation_date = table.Column<long>(nullable: false),
                     format = table.Column<string>(nullable: true),
-                    technic = table.Column<string>(nullable: true),
+                    technique = table.Column<string>(nullable: true),
                     price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>

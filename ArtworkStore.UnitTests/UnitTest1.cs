@@ -115,14 +115,14 @@ namespace ArtworkStore.UnitTests
             Mock<IArtworkRepository> mock = new Mock<IArtworkRepository>();
             mock.Setup(m => m.Artworks).Returns(new List<Artwork>
             {
-                new Artwork { Id=1, Name="Зима", Technic = "Watercolor"},
-                new Artwork { Id=2, Name="Лето", Technic = "Oil painting"},
-                new Artwork { Id=3, Name="Осень", Technic = "Watercolor"},
-                new Artwork { Id=4, Name="Весна", Technic = "Watercolor"},
-                new Artwork { Id=5, Name="Море", Technic = "Watercolor"},
-                new Artwork { Id=6, Name="Река", Technic = "Oil painting"},
-                new Artwork { Id=7, Name="Поле", Technic = "Oil painting"},
-                new Artwork { Id=8, Name="Серый день", Technic = "Watercolor"},
+                new Artwork { Id=1, Name="Зима", Technique = "Watercolor"},
+                new Artwork { Id=2, Name="Лето", Technique = "Oil painting"},
+                new Artwork { Id=3, Name="Осень", Technique = "Watercolor"},
+                new Artwork { Id=4, Name="Весна", Technique = "Watercolor"},
+                new Artwork { Id=5, Name="Море", Technique = "Watercolor"},
+                new Artwork { Id=6, Name="Река", Technique = "Oil painting"},
+                new Artwork { Id=7, Name="Поле", Technique = "Oil painting"},
+                new Artwork { Id=8, Name="Серый день", Technique = "Watercolor"},
                 /*new Artwork { Id=9, Name="Солнечный день" },
                 new Artwork { Id=10, Name="Гурзуф" },
                 new Artwork { Id=11, Name="Вечер в саду" },
@@ -135,8 +135,8 @@ namespace ArtworkStore.UnitTests
             List<Artwork> result = ((ArtworkListViewModel)controller.List("Watercolor", 1).Model).Artworks.ToList();
 
             Assert.AreEqual(result.Count, 5);
-            Assert.IsTrue(result[0].Name == "Зима" && result[0].Technic == "Watercolor");
-            Assert.IsTrue(result[1].Name == "Осень" && result[0].Technic == "Watercolor");
+            Assert.IsTrue(result[0].Name == "Зима" && result[0].Technique == "Watercolor");
+            Assert.IsTrue(result[1].Name == "Осень" && result[0].Technique == "Watercolor");
         }
     }
 }

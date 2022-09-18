@@ -27,8 +27,8 @@ namespace ArtworkStore.Domain.Entities
         [Column("format")]
         public string Format { get; set; }
 
-        [Column("technic")]
-        public string Technic { get; set; }
+        [Column("technique")]
+        public string Technique { get; set; }
 
         [Column("price")]
         public decimal Price { get; set; }

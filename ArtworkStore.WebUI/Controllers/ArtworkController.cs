@@ -17,12 +17,12 @@ namespace ArtworkStore.WebUI.Controllers
             this.repository = repository;
         }
         // GET: Artwork
-        public ViewResult List(string technic,int page=1)
+        public ViewResult List(string technique,int page=1)
         {
             ArtworkListViewModel model = new ArtworkListViewModel
             {
                 Artworks = repository.Artworks
-                    .Where(p => technic == null || p.Technic == technic)
+                    .Where(p => technique == null || p.Technique == technique)
                     .OrderBy(artwork => artwork.Id)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize),
@@ -33,7 +33,7 @@ namespace ArtworkStore.WebUI.Controllers
                     ItemsPerPage = pageSize,
                     TotalItems = repository.Artworks.Count()
                 },
-                CurrentTechnic = technic
+                CurrentTechnique = technique
             };
             return View(model);
         }   
