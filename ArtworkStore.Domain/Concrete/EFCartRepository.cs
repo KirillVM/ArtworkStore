@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace ArtworkStore.Domain.Concrete
 {
-    public class EFArtworkRepository : IArtworkRepository
+    class EFCartRepository : ICartRepository
     {
         EFDbContext context = new EFDbContext();
-
-        public IEnumerable<Artwork> Artworks
+        public IEnumerable<Cart> Carts
         {
-            get { return context.Artworks; }
+            get => context.Carts;
+            set
+            {
+                context.Carts.Add((Cart)value);
+            }
         }
     }
 }

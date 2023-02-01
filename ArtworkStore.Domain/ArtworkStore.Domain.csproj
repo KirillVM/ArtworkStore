@@ -158,7 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IArtworkRepository.cs" />
+    <Compile Include="Abstract\ICartRepository.cs" />
     <Compile Include="Concrete\EFArtworkRepository.cs" />
+    <Compile Include="Concrete\EFCartRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Entities\Artwork.cs" />
     <Compile Include="Entities\ArtworkPhoto.cs" />

@@ -189,7 +189,7 @@ namespace ArtworkStore.UnitTests
         }
 
         [TestMethod]
-        public void Generate_Category_Specific_Game_Count()
+        public void Generate_Category_Specific_Artwork_Count()
         {
             Mock<IArtworkRepository> mock = new Mock<IArtworkRepository>();
             mock.Setup(m => m.Artworks).Returns(new List<Artwork>
